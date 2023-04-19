@@ -38,4 +38,4 @@ echo -e "\e[31m>>>>>>>>> install mongodb client <<<<<<<<\e[0m"
 yum install mongodb-org-shell -y
 
 echo -e "\e[31m>>>>>>>>> load schema <<<<<<<<\e[0m"
-mongo --host mongodb.priyavenkat.online </app/schema/catalogue.js
+mongo --host mongodb-dev.priyavenkat.online </app/schema/catalogue.js
