@@ -20,7 +20,7 @@ unzip /tmp/catalogue.zip
 
 cd /app
 
-echo -e "\e[31m>>>>>>>>> installing dependencies <<<<<<<<\e[0m"
+echo -e "\e[32m>>>>>>>>> installing dependencies <<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[31m>>>>>>>>> setup systemd service <<<<<<<<\e[0m"
