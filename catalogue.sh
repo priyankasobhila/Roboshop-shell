@@ -7,7 +7,7 @@ echo -e "\e[31m>>>>>>>>> install nodejs <<<<<<<<\e[0m"
 yum install nodejs -y
 
 echo -e "\e[31m>>>>>>>>> adding app <<<<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[31m>>>>>>>>> creating app directory <<<<<<<<\e[0m"
 rm -rf /app
