@@ -1,3 +1,5 @@
+source common.sh
+
 echo -e "\e[31m>>>>>>>>> install golang <<<<<<<<\e[0m"
 yum install golang -y
 

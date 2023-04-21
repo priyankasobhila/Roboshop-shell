@@ -1,3 +1,5 @@
+source common.sh
+
 echo -e "\e[35m>>>>>>>>> Download nodejs <<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -5,7 +7,7 @@ echo -e "\e[35m>>>>>>>>> install nodejs <<<<<<<<\e[0m"
 yum install nodejs -y
 
 echo -e "\e[35m>>>>>>>>>  adding application <<<<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[35m>>>>>>>>> creating app directory <<<<<<<<\e[0m"
 rm -rf /app
@@ -19,7 +21,7 @@ echo -e "\e[35m>>>>>>>>> extract app content  <<<<<<<<\e[0m"
 unzip /tmp/cart.zip
 cd /app
 
-echo -e "\e[35m>>>>>>>>> download the nodejs dependencies <<<<<<<<\e[0m"
+echo -e "\e[35m>>>>>>>>> download  dependencies <<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[35m>>>>>>>>> setup the systemd services <<<<<<<<\e[0m"

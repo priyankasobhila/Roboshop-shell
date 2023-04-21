@@ -1,3 +1,5 @@
+source common.sh
+
 echo -e "\e[31m>>>>>>>>> install maven  <<<<<<<<\e[0m"
 yum install maven -y
 

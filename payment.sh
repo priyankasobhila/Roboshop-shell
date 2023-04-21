@@ -1,3 +1,4 @@
+source common.sh
 
 echo -e "\e[31m>>>>>>>>> install python36 <<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y

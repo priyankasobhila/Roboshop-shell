@@ -1,3 +1,5 @@
+source common.sh
+
 echo -e "\e[31m>>>>>>>>> Download nodejs <<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -27,6 +29,7 @@ echo -e "\e[31m>>>>>>>>> setup systemd service <<<<<<<<\e[0m"
 cp /home/centos/Roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[31m>>>>>>>>> start catalogue service <<<<<<<<\e[0m"
+
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue

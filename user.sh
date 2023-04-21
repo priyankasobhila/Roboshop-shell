@@ -1,3 +1,5 @@
+source common.sh
+
 echo -e "\e[34m>>>>>>>>> download nodejs <<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
