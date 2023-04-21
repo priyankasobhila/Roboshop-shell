@@ -20,6 +20,10 @@ echo -e "\e[31m>>>>>>>>> download maven dependencies <<<<<<<<\e[0m"
 mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 
+echo -e "\e[31m>>>>>>>>> setup systemd service <<<<<<<<\e[0m"
+cp /home/centos/Roboshop-shell/shipping.service /etc/systemd/system/shipping.service
+
+
 echo -e "\e[31m>>>>>>>>> start shipping service <<<<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable shipping
