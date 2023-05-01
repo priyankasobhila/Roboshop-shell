@@ -25,7 +25,7 @@ go get
 echo -e "\e[31m>>>>>>>>> build the software <<<<<<<<\e[0m"
 go build
 echo -e "\e[31m>>>>>>>>> copy the service file <<<<<<<<\e[0m"
-cp /home/centos/Roboshop-shell/dispatch.service /etc/systemd/system/dispatch.service
+cp ${script_path}/dispatch.service /etc/systemd/system/dispatch.service
 
 echo -e "\e[31m>>>>>>>>> restart the application <<<<<<<<\e[0m"
 systemctl daemon-reload

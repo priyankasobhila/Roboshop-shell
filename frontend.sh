@@ -14,7 +14,7 @@ echo -e "\e[31m>>>>>>>>> download the content <<<<<<<<\e[0m"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
 
 echo -e "\e[31m>>>>>>>>> copy the roboshop configuration file <<<<<<<<\e[0m"
-cp /home/centos/Roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf
+cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
 
 echo -e "\e[31m>>>>>>>>> extract the content <<<<<<<<\e[0m"
 unzip /tmp/frontend.zip

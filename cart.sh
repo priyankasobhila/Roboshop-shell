@@ -25,7 +25,7 @@ echo -e "\e[35m>>>>>>>>> download  dependencies <<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[35m>>>>>>>>> setup the systemd services <<<<<<<<\e[0m"
-cp /home/centos/Roboshop-shell/cart.service /etc/systemd/system/cart.service
+cp ${script_path}/cart.service /etc/systemd/system/cart.service
 
 echo -e "\e[31m>>>>>>>>> start catalogue service <<<<<<<<\e[0m"
 systemctl daemon-reload
