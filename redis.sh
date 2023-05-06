@@ -1,15 +1,22 @@
-echo -e "\e[32m>>>>>>>>> install redis repo <<<<<<<<\e[0m"
-yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 
 
-echo -e "\e[32m>>>>>>>>> install redis  <<<<<<<<\e[0m"
-dnf module enable redis:remi-6.2 -y
-yum install redis -y
+func_print_head "Install Redis Repos"
+yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$log_file
+func_stat_check $?
 
-echo -e "\e[32m>>>>>>>>> update redis listen address  <<<<<<<<\e[0m"
-sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf
-## edit the file and replace 127.0.0.1 with 0.0.0.0
+func_print_head "Install Redis"
+dnf module enable redis:remi-6.2 -y &>>$log_file
+yum install redis -y &>>$log_file
+func_stat_check $?
 
-echo -e "\e[32m>>>>>>>>> install redis  <<<<<<<<\e[0m"
-systemctl enable redis
-systemctl start redis
+func_print_head "Update Redis Listen Address"
+sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf /etc/redis/redis.conf &>>$log_file
+func_stat_check $?
+
+func_print_head "Start Redis Service"
+systemctl enable redis &>>$log_file
+systemctl restart redis &>>$log_file
+func_stat_check $?

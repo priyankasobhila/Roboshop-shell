@@ -1,16 +1,31 @@
-echo -e "\e[34m>>>>>>>>>download the erlang  <<<<<<<<\e[0m"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
+rabbitmq_appuser_password=$1
 
-echo -e "\e[34m>>>>>>>>> download rabbitmq server<<<<<<<<\e[0m"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+if [ -z "$rabbitmq_appuser_password" ]; then
+  echo Input Roboshop Appuser Password Missing
+  exit 1
+fi
 
-echo -e "\e[34m>>>>>>>>> install erlang and rabbitmq server <<<<<<<<\e[0m"
-yum install erlang rabbitmq-server -y
+func_print_head "Setup ErLang Repos"
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
+func_stat_check $?
 
-echo -e "\e[34m>>>>>>>>> start the serviecs <<<<<<<<\e[0m"
-systemctl enable rabbitmq-server
-systemctl start rabbitmq-server
+func_print_head "Setup RabbitMQ Repos"
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
+func_stat_check $?
 
-echo -e "\e[34m>>>>>>>>> add the  user and set the permissssions <<<<<<<<\e[0m"
-rabbitmqctl add_user roboshop roboshop123
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+func_print_head "Install ErLang & RabbitMQ"
+yum install erlang rabbitmq-server -y &>>$log_file
+func_stat_check $?
+
+func_print_head "Start RabbitMQ Service"
+systemctl enable rabbitmq-server &>>$log_file
+systemctl restart rabbitmq-server &>>$log_file
+func_stat_check $?
+
+func_print_head "Add Application User in RabbtiMQ"
+rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
+func_stat_check $?
